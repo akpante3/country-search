@@ -1,0 +1,23 @@
+$tablet-width: 780px;
+$desktop-width: 1024px;
+$phone-width: 640px;
+
+.app {
+    &__countries-list {
+        @apply grid grid-cols-4;
+        @apply mr-auto ml-auto;
+        @apply w-full;
+        max-width: 2000px;
+        @media (max-width: #{$tablet-width}) {
+            @apply grid-cols-3;
+        }
+        @media (max-width: #{$phone-width}) {
+            @apply grid-cols-1;
+        }
+    }
+    &__alt-screen {
+        @apply flex items-center text-4xl;
+        @apply w-full;
+    }
+
+}

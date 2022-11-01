@@ -1,0 +1,13 @@
+.input {
+    @apply mr-auto ml-auto;
+    @apply text-4xl;
+    @apply border-2 indent-2.5 border-solid border-black rounded;
+    width: 100%;
+    min-width: 200px;
+    max-width: 1000px;
+    height: 100px;
+}
+.input-wrapper {
+    @apply flex items-center;
+    @apply p-4;
+}

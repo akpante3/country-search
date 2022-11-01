@@ -1,0 +1,12 @@
+.country{
+    &__wrapper {
+        @apply drop-shadow-md m-4 bg-stone-100;
+        img {
+            @apply w-full drop-shadow-md;
+            height: 260px;
+        }
+    }
+    &__detail {
+        @apply p-4;
+    }
+}
