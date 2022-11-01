@@ -4,13 +4,10 @@ $phone-width: 640px;
 
 .app {
     &__countries-list {
-        @apply grid grid-cols-4;
+        @apply grid grid-cols-3;
         @apply mr-auto ml-auto;
         @apply w-full;
-        max-width: 2000px;
-        @media (max-width: #{$tablet-width}) {
-            @apply grid-cols-3;
-        }
+        max-width: 1800px;
         @media (max-width: #{$phone-width}) {
             @apply grid-cols-1;
         }
