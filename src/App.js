@@ -36,18 +36,19 @@ function App() {
     }
 
     // Check if the first element in the arr is an array
-    // This will likly happen when feting ALL Countries
+    // This will likely happen when fetching ALL Countries
     if (Array.isArray(json[0])) json = json[0];
+
     setCountries(json);
     setloading(false);
-  
+
     return;
   };
 
-  // triggers when user inputs text
-  const handlesearchText = () => {
+  // triggers when user inputs text:: debouce concept
+  const handleUserInput = () => {
     setTimeoutID(null);
-    // stop timeout count if the user is still typing
+    // clearTimeout if the user is still typing
     clearTimeout(timeoutID);
 
     setTimeoutID(
@@ -58,7 +59,7 @@ function App() {
   };
 
   useEffect(() => {
-    handlesearchText();
+    handleUserInput();
   }, [searchText]);
 
   return (
