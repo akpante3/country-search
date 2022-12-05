@@ -1,48 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import SearchInput from "./components/SearchInput";
+import { useCountries } from "./hooks/countries.js";
 import Country from "./components/Country";
+import Filter from "./components/Filter.js";
 import "./App.scss";
 
 function App() {
-  const [countries, setCountries] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [timeoutID, setTimeoutID] = useState(null);
-  const [loading, setloading] = useState(true);
+  const pageRef = useRef(null);
+  const [
+    handleInfiniteScroll,
+    computedCountries,
+    fetchContries,
+    loading,
+    handleFilterChange,
+  ] = useCountries(pageRef);
 
   const handleTextChange = (e) => {
     setSearchText(e.target.value);
-  };
-
-  //  fetch countries from https://restcountries.com/ API
-  const fetchContries = async () => {
-    let data;
-    const rootUrl = `https://restcountries.com/v3.1`;
-
-    setloading(true);
-
-    if (searchText.length === 0) {
-      data = await fetch(`${rootUrl}/all`);
-    } else {
-      data = await fetch(`${rootUrl}/name/${searchText}`);
-    }
-
-    let json = await data.json();
-
-    if (json.status === 404) {
-      setloading(false);
-      setCountries([]);
-      return;
-    }
-
-    // Check if the first element in the arr is an array
-    // This will likely happen when fetching ALL Countries
-    if (Array.isArray(json[0])) json = json[0];
-
-    setCountries(json);
-    setloading(false);
-
-    return;
   };
 
   // triggers when user inputs text:: debouce concept
@@ -53,23 +30,39 @@ function App() {
 
     setTimeoutID(
       setTimeout(() => {
-        fetchContries().catch(console.error);
+        fetchContries(searchText, { isName: true });
       }, 2200)
     );
   };
 
   useEffect(() => {
-    handleUserInput();
+    if (searchText.length) {
+      handleUserInput();
+    } else {
+      fetchContries(searchText);
+    }
   }, [searchText]);
 
   return (
     <div className="app">
-      <div>
-        <SearchInput handleTextChange={handleTextChange} />
-      </div>
-      <div className="app__countries-list">
-        {countries.length && !loading ? (
-          countries.map((country, index) => (
+      <header>
+        {" "}
+        <div>
+          <SearchInput handleTextChange={handleTextChange} />
+        </div>
+        <div>
+          <Filter handleFilterChange={handleFilterChange} />
+        </div>
+      </header>
+
+      <div
+        className="app__countries-list"
+        onScroll={() => handleInfiniteScroll()}
+        style={{ overflowY: "scroll", maxHeight: "100vh" }}
+        ref={pageRef}
+      >
+        {computedCountries.length && !loading ? (
+          computedCountries.map((country, index) => (
             <Country
               key={index}
               flag={country?.flags?.png}
@@ -84,6 +77,7 @@ function App() {
           </div>
         )}
       </div>
+      {/* <footer className="app__footer"></footer> */}
     </div>
   );
 }

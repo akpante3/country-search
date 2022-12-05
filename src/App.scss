@@ -3,11 +3,13 @@ $desktop-width: 1024px;
 $phone-width: 640px;
 
 .app {
+    max-width: 1200px;
+    @apply mr-auto ml-auto;
+
     &__countries-list {
         @apply grid grid-cols-3;
         @apply mr-auto ml-auto;
         @apply w-full;
-        max-width: 1200px;
         @media (max-width: #{$phone-width}) {
             @apply grid-cols-1;
         }
@@ -16,5 +18,9 @@ $phone-width: 640px;
         @apply flex items-center text-4xl;
         @apply w-full;
     }
-
+    &__footer {
+        background-color: black;
+        width: 100vw;
+        height: 200px;
+    }
 }
