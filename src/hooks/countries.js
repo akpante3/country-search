@@ -15,7 +15,6 @@ export const useCountries = (pageRef) => {
     }
 
     if (bottom && computedCountries.length !== countries.length) {
-      console.log("log");
       const newCountriesList = [...countries];
       const countriesToMerge = newCountriesList.slice(
         0,
@@ -23,9 +22,9 @@ export const useCountries = (pageRef) => {
       );
       // if (countriesToMerge.length >= countries.length) return;
       setTimeout(() => {
-        console.log(countriesToMerge);
         setComputedCountries(countriesToMerge);
-      }, 1000);
+      }, 800);
+
     }
   };
 

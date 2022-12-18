@@ -1,26 +1,44 @@
 $tablet-width: 780px;
 $desktop-width: 1024px;
 $phone-width: 640px;
+$background-color: white;
 
 .app {
-    max-width: 1200px;
-    @apply mr-auto ml-auto;
+  max-width: 1200px;
+  @apply mr-auto ml-auto;
 
-    &__countries-list {
-        @apply grid grid-cols-3;
-        @apply mr-auto ml-auto;
-        @apply w-full;
-        @media (max-width: #{$phone-width}) {
-            @apply grid-cols-1;
-        }
+  header {
+    @apply sticky;
+    @apply z-10;
+    top: 0;
+    background-color: $background-color;
+  }
+
+  &__countries-list {
+    @apply grid grid-cols-3;
+    @apply mr-auto ml-auto;
+    @apply w-full;
+    @media (max-width: #{$phone-width}) {
+      @apply grid-cols-1;
     }
-    &__alt-screen {
-        @apply flex items-center text-4xl;
-        @apply w-full;
-    }
-    &__footer {
-        background-color: black;
-        width: 100vw;
-        height: 200px;
-    }
+  }
+  &__alt-screen {
+    @apply flex items-center text-4xl;
+    @apply w-full;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    z-index: 100;
+  }
+  &__footer {
+    background-color: black;
+    width: 100vw;
+    height: 200px;
+  }
+}
+.button {
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+}
+
+.app {
 }

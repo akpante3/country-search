@@ -1,0 +1,18 @@
+.country-detail {
+    @apply p-6;
+    &__body {
+        @apply mb-5 mt-5;
+    }
+    &__name {
+        font-size: 50px;
+        font-weight: 700;
+    }
+    &__sub-header {
+        font-weight: 800;
+        font-size: 20px;
+    }
+    &__flag {
+        width: 30px;
+        height: 20px;
+    }
+}

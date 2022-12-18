@@ -1,6 +1,6 @@
 import "./Country.scss";
 
-function Country({ flag, name, continent, capital }) {
+function Country({ flag, name, continent, openDetailModal }) {
   return (
     <div className="country__wrapper">
       <img src={flag} alt="flag" />
@@ -9,14 +9,15 @@ function Country({ flag, name, continent, capital }) {
           <b>Name: {" "} </b>
           {name}
         </div>
-        <div>
+        {/* <div>
           <b>Continent: {" "} </b>
           {continent}
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <b>Capital: {" "} </b>
           {capital}
-        </div>
+        </div> */}
+        <button className="button" onClick={() => openDetailModal()}>Detail</button>
       </div>
     </div>
   );
