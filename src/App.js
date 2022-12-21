@@ -68,7 +68,7 @@ function App() {
         ref={pageRef}
       >
         {
-          computedCountries.length 
+          computedCountries.length && !loading
             ? computedCountries.map((country, index) => (
                 <Country
                   key={index}
@@ -99,6 +99,8 @@ function App() {
         continent={selectedCountry?.continents}
         capital={selectedCountry?.capital}
         location={selectedCountry?.maps?.googleMaps}
+        lat={selectedCountry?.latlng[0]}
+        lng={selectedCountry?.latlng[1]}
         onClose={() => setCountry(null)}
       />
       {/* <footer className="app__footer"></footer> */}

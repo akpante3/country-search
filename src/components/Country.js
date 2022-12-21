@@ -1,5 +1,6 @@
 import "./Country.scss";
 
+
 function Country({ flag, name, continent, openDetailModal }) {
   return (
     <div className="country__wrapper">

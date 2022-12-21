@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
+import Map from "./Map";
 import Modal from "react-modal";
 import "./CountryDetail.scss";
 
-function CountryDetails({ name, flag, continent, capital, location, onClose }) {
+function CountryDetails({
+  name,
+  flag,
+  continent,
+  capital,
+  location,
+  onClose,
+  lat,
+  lng,
+}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function openModal() {
@@ -27,7 +37,7 @@ function CountryDetails({ name, flag, continent, capital, location, onClose }) {
       right: "auto",
       bottom: "auto",
       width: "100%",
-      maxWidth: "500px",
+      maxWidth: "700px",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
     },
@@ -44,7 +54,7 @@ function CountryDetails({ name, flag, continent, capital, location, onClose }) {
           <h1 className="country-detail__name">{name}</h1>
           <img className="country-detail__flag" src={flag} alt="flag" />
         </div>
-        {/* <button onClick={closeModal}>Close Modal</button> */}
+        <button onClick={closeModal}>Close Modal</button>
         <div className="country-detail__body">
           <div>
             <h2 className="country-detail__sub-header">Continent: </h2>
@@ -55,9 +65,12 @@ function CountryDetails({ name, flag, continent, capital, location, onClose }) {
             {capital}
           </div>
         </div>
-
+        <div className="country-detail__map">
+          <Map lat={lng} lng={lat} />
+        </div>
+        <br />
         <a className="button" href={location} target="_blank" rel="noreferrer">
-          Location
+          Google Location
         </a>
       </Modal>
     </div>

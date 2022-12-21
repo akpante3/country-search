@@ -15,4 +15,11 @@
         width: 30px;
         height: 20px;
     }
+    &__map {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+        padding: 5px;
+        height: 400px;
+    }
 }
