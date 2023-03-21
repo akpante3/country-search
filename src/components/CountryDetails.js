@@ -54,7 +54,6 @@ function CountryDetails({
           <h1 className="country-detail__name">{name}</h1>
           <img className="country-detail__flag" src={flag} alt="flag" />
         </div>
-        <button onClick={closeModal}>Close Modal</button>
         <div className="country-detail__body">
           <div>
             <h2 className="country-detail__sub-header">Continent: </h2>

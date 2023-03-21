@@ -2,7 +2,10 @@ import "./Filter.scss";
 
 const continents = ["africa", "americas", "asia", "europe", "oceania"];
 
-function Filter({ handleFilterChange }) {
+function Filter({ handleFilterChange, isDisable }) {
+  const selectStyle = {
+    cursor: isDisable ? 'not-allowed' : 'pointer'
+  }
   return (
     <div className="input-wrapper">
       <select
@@ -10,13 +13,15 @@ function Filter({ handleFilterChange }) {
         name="continent"
         id="continent"
         onChange={(e) => handleFilterChange("continent", e.target.value)}
+        disabled={isDisable}
+        style={selectStyle}
       >
         <option value="" defaultValue>
-          All Continent
+        { isDisable ? '' : 'All Continent'}
         </option>
         {continents.map((continent, index) => (
           <option key={index} value={continent}>
-            {continent}
+            { isDisable ? '' : continent }
           </option>
         ))}
       </select>

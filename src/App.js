@@ -42,6 +42,10 @@ function App() {
     );
   };
 
+  const headerStyle = {
+    zIndex: selectedCountry ? "0" : "10",
+  };
+
   useEffect(() => {
     if (searchText.length) {
       handleUserInput();
@@ -52,13 +56,16 @@ function App() {
 
   return (
     <div className="app">
-      <header>
+      <header style={headerStyle}>
         {" "}
         <div>
           <SearchInput handleTextChange={handleTextChange} />
         </div>
         <div>
-          <Filter handleFilterChange={handleFilterChange} />
+          <Filter
+            handleFilterChange={handleFilterChange}
+            isDisable={searchText ? true : false}
+          />
         </div>
       </header>
       <div
@@ -67,24 +74,17 @@ function App() {
         style={{ overflowY: "scroll", maxHeight: "100vh" }}
         ref={pageRef}
       >
-        {
-          computedCountries.length && !loading
-            ? computedCountries.map((country, index) => (
-                <Country
-                  key={index}
-                  flag={country?.flags?.png}
-                  name={country?.name?.common}
-                  continent={country?.continents}
-                  openDetailModal={() => setCountry(country)}
-                />
-              ))
-            : null
-          // (
-          //   <div className="app__alt-screen">
-          //     {loading ? <div>loading!!!!!</div> : <div>NOT FOUND</div>}
-          //   </div>
-          // )
-        }
+        {computedCountries.length && !loading
+          ? computedCountries.map((country, index) => (
+              <Country
+                key={index}
+                flag={country?.flags?.png}
+                name={country?.name?.common}
+                continent={country?.continents}
+                openDetailModal={() => setCountry(country)}
+              />
+            ))
+          : null}
       </div>
 
       {loading && (
@@ -103,7 +103,6 @@ function App() {
         lng={selectedCountry?.latlng[1]}
         onClose={() => setCountry(null)}
       />
-      {/* <footer className="app__footer"></footer> */}
     </div>
   );
 }
