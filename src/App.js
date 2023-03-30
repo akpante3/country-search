@@ -29,6 +29,7 @@ function App() {
     setSearchText(e.target.value);
   };
 
+  // fetch countries
   // triggers when user inputs text:: debouce concept
   const handleUserInput = () => {
     setTimeoutID(null);
